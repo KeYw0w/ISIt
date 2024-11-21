@@ -3,7 +3,7 @@ services:
   backend:
     image: keyw0w/isit:latest
     ports:
-      - "8080:8080"
+      - "8080:8081"
     depends_on:
       - service-db
     volumes:
