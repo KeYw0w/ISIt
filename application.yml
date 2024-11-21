@@ -1,0 +1,25 @@
+config:
+  cleaner:
+    empty-chats-clean-delay: 3600 # delay for clean empty chats in db (time unit - seconds)
+  jwt:
+    secret: 5fcd7be67fceebbdf458fc073a4e07ca82fcbe628f1ab0fc82d7610cec58b9af6e5ecfffcaedd02b1bdef61ff728e3f2d51cfed68f239ec1fe699fa6d51344578a5cd8b42b93e90cc541aaf639b2e85f93e28eabad45538a903d7eba2dd8368230f6481f407f12c7d85d79f55359aee31dd700a671cae1ec26044441ea8291a130101b30c69923993674dd059a960bfaf984801d9f8d9b4f4e0ecc1dbf7e6e60ac8032718394f9af24569238e35a8613ff87ffc8a4c7dfc817310b133d910f119373d7a09612eb4eaf9ea5503911a35dd93e6804f44dce4e54a17959c21644edcc56932ed9341d8c6a51d1da3879f61200e7f4e61087b3a0cb4a60b09e0cf9ea # jwt secret (size >= 256 bits)
+    expiration-time-seconds: 600000 # token expiration time (min value: 300, default value: 3600)
+
+server:
+  port: 8080 # the port on which the application will run
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver # or your DB driver
+    url: jdbc:postgresql://service-db:5432/postgres # or your JDBC-url and DB
+    username: postgres # your username
+    password: postgres # your password
+  jpa:
+    show-sql: true
+
+springdoc:
+  paths-to-match: /api/v1/**
+  swagger-ui:
+    path: /docs/swagger-ui.html
+  api-docs:
+    path: /docs/api-docs

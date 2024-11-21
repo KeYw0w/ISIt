@@ -1,0 +1,23 @@
+
+services:
+  backend:
+    image: keyw0w/chat-rest:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-db
+    volumes:
+      - ./application.yml:/chat-rest-service/src/main/resources/application.yml
+      
+
+  service-db:
+    image: postgres:14.7-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-ddl-script.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - ./db-data:/var/lib/postgresql/data
+    restart: unless-stopped
