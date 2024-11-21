@@ -49,3 +49,20 @@ create table public.chat_users
     foreign key (chat_id) references chats (id),
     foreign key (user_id) references users (id)
 );
+create table tasks
+(
+    id          serial
+        primary key,
+    title       varchar(255) not null,
+    description text,
+    status      varchar(50) default 'PENDING'::character varying
+        constraint tasks_status_check
+            check ((status)::text = ANY
+                   ((ARRAY ['PENDING'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying])::text[])),
+    user_id     integer      not null
+        constraint user_id
+            references users
+            on delete cascade,
+    created_at  timestamp   default CURRENT_TIMESTAMP,
+    updated_at  timestamp   default CURRENT_TIMESTAMP
+);
