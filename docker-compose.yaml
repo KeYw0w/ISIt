@@ -1,7 +1,7 @@
 
 services:
   backend:
-    image: keyw0w/chat-rest:latest
+    image: keyw0w/isit:latest
     ports:
       - "8080:8080"
     depends_on:
@@ -21,7 +21,7 @@ services:
       - ./postgres-ddl-script.sql:/docker-entrypoint-initdb.d/create_db.sql
       - ./db-data:/var/lib/postgresql/data
     restart: unless-stopped
-    
+
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
